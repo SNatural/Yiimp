@@ -129,7 +129,6 @@ YAAMP_ALGO g_algos[] =
 	
 	{"bcd", bcd_hash, 1, 0, 0},
 	
-	{"binarium-v1", Binarium_hash_v1_hash, 1, 0, 0},
 	
 	{"x11evo", x11evo_hash, 1, 0, 0},
 	{"xevan", xevan_hash, 0x100, 0, 0},
@@ -223,6 +222,13 @@ YAAMP_ALGO g_algos[] =
 	{"whirlcoin", whirlpool_hash, 1, 0, sha256_hash_hex }, /* old sha merkleroot */
 	{"whirlpool", whirlpool_hash, 1, 0 }, /* sha256d merkleroot */
 	{"whirlpoolx", whirlpoolx_hash, 1, 0, 0},
+	
+	{"astralhash", astralhash_hash, 0x100, 0, 0},
+	
+	{"jeonghash", jeonghash_hash, 0x100, 0, 0},
+	
+	{"pawelhash", pawelhash_hash, 0x100, 0, 0},
+	
 
 	{"", NULL, 0, 0},
 };

@@ -17,7 +17,6 @@ function yaamp_get_algos()
 		'balloon',
 		'bastion',
 		'bcd',
-		'binarium-v1',
 		'bitcore',
 		'blake',
 		'blakecoin',
@@ -94,6 +93,13 @@ function yaamp_get_algos()
 		'yespowerR32',
 		'whirlpool',
 		'zr5',
+		
+		'astralhash',
+		'globalhash',
+		'jeonghash',
+		'padihash',
+		'pawelhash',
+		
 	);
 }
 
@@ -172,6 +178,7 @@ function getAlgoColors($algo)
 		'scryptn'	=> '#d0d0d0',
 		'c11'		=> '#a0a0d0',
 		'decred'	=> '#f0f0f0',
+		'dedal'		=> '#f0f0f0',
 		'deep'		=> '#e0ffff',
 		'x11'		=> '#f0f0a0',
 		'x11evo'	=> '#c0f0c0',
@@ -198,9 +205,7 @@ function getAlgoColors($algo)
 		'balloon'	=> '#e0b0b0',
 		'blake'		=> '#f0f0f0',
 		'blakecoin'	=> '#f0f0f0',
-		'binarium-v1'	=> '#f0f0f0',
 		'cuckoo'	=> '#d0a0a0',
-		'dedal'		=> '#f0f0f0',
 		'geek'		=> '#d0a0a0',
 		'groestl'	=> '#d0a0a0',
 		'jha'		=> '#a0d0c0',
@@ -253,7 +258,14 @@ function getAlgoColors($algo)
 		'yespowerR32' => '#e2d0d2',
 		'zr5'		=> '#d0b0d0',
 		'lbk3'		=> '#809aef',
-		'lyra2'		=> '#80a0f0',			
+		'lyra2'		=> '#80a0f0',
+		
+		'astralhash' => '#e2d0d2',
+		'globalhash' => '#e2d0d2',
+		'jeonghash' => '#e2d0d2',
+		'padihash' => '#e2d0d2',
+		'pawelhash' => '#e2d0d2',
+		
 
 		'MN'		=> '#ffffff', // MasterNode Earnings
 		'PoS'		=> '#ffffff'  // Stake
@@ -276,7 +288,6 @@ function getAlgoPort($algo)
 		'bitcore'	=> 3556,
 		'balloon'	=> 5100,
 		'bcd'		=> 3643,
-		'binarium-v1' => 6666,
 		'c11'		=> 3573,
 		'cuckoo'	=> 3343,
 		'dedal'		=> 8833,
@@ -361,6 +372,12 @@ function getAlgoPort($algo)
 		'skunk'		=> 8433,
 		'tribus'	=> 8533,
 	    'a5a'   	=> 8633,
+		
+		'astralhash'   	=> 8640,
+		'globalhash'   	=> 8650,
+		'jeonghash'   	=> 8660,
+		'padihash'   	=> 8670,
+		'pawelhash'   	=> 8680,
 		
 	);
 
