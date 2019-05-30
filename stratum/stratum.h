@@ -162,6 +162,7 @@ void sha256_double_hash_hex(const char *input, char *output, unsigned int len);
 #include "algos/x17.h"
 #include "algos/x18.h"
 #include "algos/x22i.h"
+#include "algos/x25x.h"
 #include "algos/xevan.h"
 #include "algos/hmq17.h"
 #include "algos/nist5.h"
@@ -226,4 +227,4 @@ void sha256_double_hash_hex(const char *input, char *output, unsigned int len);
 #include "algos/lyra2vc0ban.h"
 #include "algos/x20r.h"
 #include "algos/gltalgos.h"
-#include "algos/x25x.h"
+
