@@ -166,6 +166,7 @@ YAAMP_ALGO g_algos[] =
 	{"nist5", nist5_hash, 1, 0, 0},
 	{"qubit", qubit_hash, 1, 0, 0},
 	{"groestl", groestl_hash, 0x100, 0, sha256_hash_hex }, /* groestlcoin */
+	{"heavyhash", heavyhash_hash, 1, 0, 0}, /* OBTC */
 	{"dmd-gr", groestl_hash, 0x100, 0, 0}, /* diamond (double groestl) */
 	{"myr-gr", groestlmyriad_hash, 1, 0, 0}, /* groestl + sha 64 */
 	{"skein", skein_hash, 1, 0, 0},
