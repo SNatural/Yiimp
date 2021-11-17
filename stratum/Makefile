@@ -1,66 +1,47 @@
 
-CC=gcc
+CC=gcc -g -ggdb
 
-CFLAGS= -g -march=native
-SQLFLAGS= `mysql_config --cflags --libs`
+#CFLAGS=-c -g -I /usr/include/mysql
+#LDFLAGS=-g
 
-# Comment this line to disable address check on login,
-# if you use the auto exchange feature...
-CFLAGS += -DNO_EXCHANGE
+CXXFLAGS = -O2 -I.. -march=native
+CFLAGS= $(CXXFLAGS) -std=gnu99
+LDFLAGS=-O2 -lgmp
 
-#CFLAGS=-c -O2 -I /usr/include/mysql
-LDFLAGS=-O2 `mysql_config --libs`
+SOURCES=lyra2re.c lyra2v2.c Lyra2.c lyra2z.c Lyra2-z.c lyra2zz.c Lyra2-zz.c Sponge.c allium.c SWIFFTX/SWIFFTX.c lyra2vc0ban.c lyra2v3.c \
+	c11.c x11.c x12.c x13.c hsr14.c x14.c x15.c x17.c x18.c \
+	blake.c blakecoin.c blake2s.c jha.c keccak.c lbry.c tribus.c \
+	deep.c fresh.c groestl.c neoscrypt.c nist5.c quark.c qubit.c skein.c skein2.c \
+	bitcore.c timetravel.c x11evo.c x16r.c x16s.c x16rt.c xevan.c bastion.c hmq17.c sonoa.c \
+	bmw.c luffa.c pentablake.c vitalium.c whirlpool.c whirlpoolx.c zr5.c \
+	scrypt.c scryptn.c sha256.c sha256t.c \
+	yescrypt.c yescrypt-opt.c sha256_Y.c \
+	yespower.c yespower-opt.c sha256-P.c \
+	a5a.c a5amath.c m7m.c magimath.cpp velvet.c \
+	argon2a.c blake2/blake2b.c blake2/blake2s.c ar2/argon2.c ar2/core.c ar2/encoding.c ar2/opt.c ar2/thread.c ar2/ar2-scrypt-jane.c \
+	hive.c pomelo.c hex.c argon2d.c geek.c balloon.c bcd.c \
+	phi.c phi2.c polytimos.c rainforest.c renesis.c skunk.c sib.c veltor.c gost.c aergo.c x22i.c x21s.c lbk3.c pipehash.c dedal.c x20r.c gltalgos.c x25x.c \
+    heavyhash/heavyhash.c heavyhash/keccak_tiny.c	
 
-LDLIBS=iniparser/libiniparser.a algos/libalgos.a sha3/libhash.a -lpthread -lgmp -lm -lstdc++ -lssl -lcrypto
-LDLIBS+=-lmysqlclient
+OBJECTS=$(SOURCES:%.c=%.o) $(SOURCES:%.cpp=%.o)
+OUTPUT=libalgos.a
 
-SOURCES=stratum.cpp db.cpp coind.cpp coind_aux.cpp coind_template.cpp coind_submit.cpp util.cpp list.cpp \
-	rpc.cpp job.cpp job_send.cpp job_core.cpp merkle.cpp share.cpp socket.cpp coinbase.cpp \
-	client.cpp client_submit.cpp client_core.cpp client_difficulty.cpp remote.cpp remote_template.cpp \
-	user.cpp object.cpp json.cpp base58.cpp
-
-CFLAGS += -DHAVE_CURL
-SOURCES += rpc_curl.cpp
-LDCURL = $(shell /usr/bin/pkg-config --static --libs libcurl)
-LDFLAGS += $(LDCURL)
-
-OBJECTS=$(SOURCES:.cpp=.o)
-OUTPUT=stratum
-
-CODEDIR1=algos
-CODEDIR2=sha3
-
-.PHONY: projectcode1 projectcode2
-
-all: projectcode1 projectcode2 $(SOURCES) $(OUTPUT)
-
-projectcode1:
-	$(MAKE) -C $(CODEDIR1)
-
-projectcode2:
-	$(MAKE) -C $(CODEDIR2)
-
-$(SOURCES): stratum.h util.h
+all: $(SOURCES) $(OUTPUT)
 
 $(OUTPUT): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LDLIBS) $(LDFLAGS) -o $@
+	ar rc $@ $(OBJECTS)
+	touch ../stratum.cpp
 
 .cpp.o:
-	$(CC) $(CFLAGS) $(SQLFLAGS) -c $<
+	$(CC) $(CXXFLAGS) -c $< -o $@
 
 .c.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
+
+#	$(CC) $(CFLAGS) -std=gnu99 -Wno-pointer-sign -Wno-pointer-to-int-cast -funroll-loops -fvariable-expansion-in-unroller -fmerge-all-constants -fbranch-target-load-optimize2 -fsched2-use-superblocks -falign-loops=16 -falign-functions=16 -falign-jumps=16 -falign-labels=16 -Ofast -flto -fuse-linker-plugin -ftree-loop-if-convert-stores -DUSE_ASM -pg $<
 
 clean:
 	rm -f *.o
-	rm -f algos/*.o
-	rm -f algos/*.a
-	rm -f sha3/*.o
-	rm -f sha3/*.a
-	rm -f algos/ar2/*.o
-
-install: clean all
-	strip -s stratum
-	cp stratum /usr/local/bin/
-	cp stratum ../bin/
-
+	rm -f ar2/*.o
+	rm -f blake2/*.o	
+	rm -f heavyhash/*.o
