@@ -298,6 +298,7 @@ end;
 $account = '';
 if ($DCR) $account = '*';
 if ($ETH) $account = $coin->master_wallet;
+if ($coin->symbol=="OBTC") $account = "*";
 
 $txs = $remote->listtransactions($account, $maxrows);
 
